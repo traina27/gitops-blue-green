@@ -1,8 +1,8 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: infrastructure
-  namespace: argocd
+  name: bluegreen-sample
+  namespace: infrastructure
 spec:
   project: default
   source:
