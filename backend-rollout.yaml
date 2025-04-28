@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Rollout
 metadata:
   name: backend
-  namespace: staging
+  namespace: infrastructure
 spec:
   replicas: 2
   strategy:

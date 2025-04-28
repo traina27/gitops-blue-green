@@ -1,12 +1,12 @@
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
-  name: argo-rollouts-full-binding
+  name: argocd-clusterrolebinding
 subjects:
-  - kind: ServiceAccount
-    name: argo-rollouts
-    namespace: infrastructure
+- kind: ServiceAccount
+  name: argocd-application-controller
+  namespace: infrastructure
 roleRef:
   kind: ClusterRole
-  name: argo-rollouts-full-role
+  name: argocd-clusterrole
   apiGroup: rbac.authorization.k8s.io

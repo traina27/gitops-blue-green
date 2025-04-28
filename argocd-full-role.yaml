@@ -1,0 +1,43 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: argocd-full-access-role
+rules:
+  # Core API group
+  - apiGroups: [""]
+    resources: ["*"]
+    verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
+  
+  # Named API groups
+  - apiGroups:
+      - "apps"
+      - "extensions"
+      - "networking.k8s.io"
+      - "rbac.authorization.k8s.io"
+      - "apiextensions.k8s.io"
+      - "admissionregistration.k8s.io"
+      - "apiregistration.k8s.io"
+      - "autoscaling"
+      - "batch"
+      - "certificates.k8s.io"
+      - "coordination.k8s.io"
+      - "discovery.k8s.io"
+      - "events.k8s.io"
+      - "monitoring.coreos.com"
+      - "node.k8s.io"
+      - "policy"
+      - "scheduling.k8s.io"
+      - "storage.k8s.io"
+      - "flowcontrol.apiserver.k8s.io"
+    resources: ["*"]
+    verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
+  
+  # Argo specific API groups
+  - apiGroups:
+      - "argoproj.io"
+    resources: ["*"]
+    verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
+  
+  # Allow non-resource URLs
+  - nonResourceURLs: ["*"]
+    verbs: ["get", "list", "watch"]
