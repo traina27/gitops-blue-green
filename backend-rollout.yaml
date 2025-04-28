@@ -1,0 +1,27 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
+metadata:
+  name: backend
+  namespace: default
+spec:
+  replicas: 2
+  strategy:
+    blueGreen:
+      activeService: backend-stable
+      previewService: backend-preview
+      autoPromotionEnabled: false # Bật cho QA test trước khi promote
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+      - name: backend
+        image: hashicorp/http-echo
+        args:
+        - "-text=Hello from new version!"
+        ports:
+        - containerPort: 5678
